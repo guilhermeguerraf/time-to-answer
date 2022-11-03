@@ -1,18 +1,13 @@
-require 'pastel'
-
 namespace :dev do
   desc "Rebuilds the database"
   task setup: :environment do
     if Rails.env.development?
       show_spinner("Apagando BD ...") { %x(rails db:drop) }
-
       show_spinner("Criando BD ...") { %x(rails db:create) }
-      
       show_spinner("Migrando BD ...") { %x(rails db:migrate) }
-
       %x(rails dev:add_default_user)
-      
       %x(rails dev:add_default_admin)
+      %x(rails dev:add_extra_admins)
     else
       "This task run just in development environment."
     end
@@ -37,6 +32,19 @@ namespace :dev do
         password: 'qwe#@!',
         password_confirmation: 'qwe#@!'
       )
+    end
+  end
+
+  desc "Loads extra admins into the database"
+  task add_extra_admins: :environment do
+    show_spinner("Carregando administradores extras ...") do
+      10.times do |i|
+        Admin.create!(
+          email: Faker::Internet.email,
+          password: 'qwe#@!',
+          password_confirmation: 'qwe#@!'
+        )
+      end
     end
   end
 
