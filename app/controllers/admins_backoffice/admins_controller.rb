@@ -1,6 +1,6 @@
 class AdminsBackoffice::AdminsController < AdminsBackofficeController
   before_action :verify_password, only: [:update]
-  before_action :set_admin, only: [:edit, :update]
+  before_action :set_admin, only: [:edit, :update, :destroy]
 
   def index
     @admins = Admin.all
@@ -30,6 +30,15 @@ class AdminsBackoffice::AdminsController < AdminsBackofficeController
       render :new
     end
   end
+  
+  def destroy
+    if @admin.destroy
+      redirect_to admins_backoffice_admins_path, notice: 'Administrador excluído com sucesso!'
+    else
+      redirect_to admins_backoffice_admins_path
+    end
+  end
+  
 
   private
     def verify_password
