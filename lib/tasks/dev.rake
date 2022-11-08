@@ -1,4 +1,6 @@
 namespace :dev do
+  DEFAULT_FILES_PATH = File.join(Rails.root, 'lib', 'tmp')
+
   desc "Rebuilds the database"
   task setup: :environment do
     if Rails.env.development?
@@ -8,6 +10,7 @@ namespace :dev do
       %x(rails dev:add_default_user)
       %x(rails dev:add_default_admin)
       %x(rails dev:add_extra_admins)
+      %x(rails dev:add_subjects)
     else
       "This task run just in development environment."
     end
@@ -44,6 +47,18 @@ namespace :dev do
           password: 'qwe#@!',
           password_confirmation: 'qwe#@!'
         )
+      end
+    end
+  end
+
+  desc "Loads a subjects list into the database"
+  task add_subjects: :environment do
+    show_spinner("Carregando assuntos ...") do
+      file_name = 'subjects.txt'
+      file_path = File.join(DEFAULT_FILES_PATH, file_name)
+      
+      File.open(file_path, 'r').each do |line|
+        Subject.create!(description: line.strip)
       end
     end
   end

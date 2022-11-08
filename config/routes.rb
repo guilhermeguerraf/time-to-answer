@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   namespace :admins_backoffice do
     get 'dashboard', to: 'welcome#index' # Dashboard
     resources :admins, except: [:show]
+    resources :subjects, except: [:show]
   end
   
   devise_for :users
