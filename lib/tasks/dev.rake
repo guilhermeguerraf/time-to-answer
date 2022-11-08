@@ -11,6 +11,7 @@ namespace :dev do
       %x(rails dev:add_default_admin)
       %x(rails dev:add_extra_admins)
       %x(rails dev:add_subjects)
+      %x(rails dev:add_questions)
     else
       "This task run just in development environment."
     end
@@ -59,6 +60,20 @@ namespace :dev do
       
       File.open(file_path, 'r').each do |line|
         Subject.create!(description: line.strip)
+      end
+    end
+  end
+
+  desc "Loads questions into the database"
+  task add_questions: :environment do
+    show_spinner("Carregando questoes ...") do
+      Subject.all.each do |subject|
+        rand(3..10).times do |i|
+          Question.create!(
+            description: "#{Faker::Lorem.paragraph} #{Faker::Lorem.question}",
+            subject: subject
+          )
+        end
       end
     end
   end

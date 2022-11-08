@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     get 'dashboard', to: 'welcome#index' # Dashboard
     resources :admins, except: [:show]
     resources :subjects, except: [:show]
+    resources :questions
   end
   
   devise_for :users
