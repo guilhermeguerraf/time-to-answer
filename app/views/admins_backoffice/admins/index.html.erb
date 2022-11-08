@@ -1,3 +1,4 @@
+<%# Page title %>
 <div class="row">
   <div class="col-lg-12">
     <div class="page-header">
@@ -10,6 +11,8 @@
 
   </div> <!-- /.col-lg-12 -->
 </div> <!-- /.row -->
+
+<%# Table %>
 <div class="row">
   <div class="col-lg-12">
     <div class="table-responsive">
@@ -42,6 +45,9 @@
   </div> <!-- /.col-lg-12 -->
 </div> <!-- /.row -->
 
-
-
-
+<%# Pagination %>
+<div class="row">
+  <div class="col-lg-12 text-center">
+    <%= paginate @admins %>
+  </div> <!-- /.col-lg-12 -->
+</div> <!-- /.row -->
