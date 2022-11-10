@@ -4,3 +4,17 @@
     editing: Editando %{model}
     new: Novo %{model}
     confirm_with: Tem certeza?
+  placeholders:
+    devise:
+      email: fulanodasilva@mail.com
+      password: Deve ter pelo menos 6 caracteres
+      password_confirmation: Repita a senha
+    question:
+      description: Qual é a sua pergunta?
+      subject: Selecione qual é o assunto da sua pergunta...
+    answer:
+      description: A resposta é...
+      question: Alternativa para a pergunta...
+      correct: Essa é a alternativa correta?
+    subject:
+      description: Comece um novo assunto...

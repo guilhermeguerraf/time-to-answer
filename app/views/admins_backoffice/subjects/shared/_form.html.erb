@@ -32,9 +32,12 @@
             <%= form_with model: [:admins_backoffice, @subject], local: true do |form| %>
               <div class="form-group">
                 <%= form.label :description %>
-                <%= form.text_field :description, class: 'form-control', placeholder: 'Descrição do assunto' %>
+                <%= form.text_field :description, class: 'form-control', placeholder: t('placeholders.subject.description') %>
               </div>
-              <%= form.submit 'Salvar', class: 'btn btn-default' %>
+              <%= form.submit t('buttons.save'), class: 'btn btn-primary' %>
+              <%= link_to admins_backoffice_subjects_path, class: 'btn btn-default' do %>
+                <%= t('buttons.back') %>
+              <% end %>
             <% end %>
           </div> <!-- /.col-lg-6 (nested) -->
         </div> <!-- /.row (nested) -->

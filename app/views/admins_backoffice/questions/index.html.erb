@@ -5,7 +5,7 @@
       <h1>
         <%= t('messages.listing', model: @questions.model_name.human(count: 2)) %>
       </h1>
-      <%= link_to new_admins_backoffice_question_path, class: "btn btn-success" do %>
+      <%= link_to new_admins_backoffice_question_path, class: "btn btn-success", title: t('buttons.new') do %>
         <i class="fa fa-plus"></i> Nova pergunta
       <% end %>
     </div>
@@ -32,10 +32,10 @@
               <td><%= question.description.truncate(90) %></td>
               <td><%= question.subject.description.truncate(25) %></td>
               <th>
-                <%= link_to edit_admins_backoffice_question_path(question), class: "btn btn-primary btn-circle" do %>
+                <%= link_to edit_admins_backoffice_question_path(question), class: "btn btn-primary btn-circle", title: t('buttons.edit') do %>
                   <i class="fa fa-edit"></i>
                 <% end %>
-                <%= link_to admins_backoffice_question_path(question), method: :delete, data: { confirm: t('messages.confirm_with') }, class: "btn btn-danger btn-circle" do %>
+                <%= link_to admins_backoffice_question_path(question), method: :delete, data: { confirm: t('messages.confirm_with') }, class: "btn btn-danger btn-circle", title: t('buttons.destroy') do %>
                   <i class="fa fa-trash-o"></i>
                 <% end %>
               </th>
