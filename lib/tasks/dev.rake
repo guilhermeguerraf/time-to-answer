@@ -11,7 +11,7 @@ namespace :dev do
       %x(rails dev:add_default_admin)
       %x(rails dev:add_extra_admins)
       %x(rails dev:add_subjects)
-      %x(rails dev:add_questions)
+      %x(rails dev:add_questions_and_answers)
     else
       "This task run just in development environment."
     end
@@ -64,21 +64,52 @@ namespace :dev do
     end
   end
 
-  desc "Loads questions into the database"
-  task add_questions: :environment do
-    show_spinner("Carregando questoes ...") do
+  desc "Loads questions and answers into the database"
+  task add_questions_and_answers: :environment do
+    show_spinner("Carregando questoes e respostas ...") do
+      # Passar por cada assunto
       Subject.all.each do |subject|
+        # Cadastrar de 3 a 10 respostas por assunto
         rand(3..10).times do |i|
-          Question.create!(
-            description: "#{Faker::Lorem.paragraph} #{Faker::Lorem.question}",
-            subject: subject
-          )
+          Question.create!(question_params(subject))
         end
       end
     end
   end
 
   private
+    def question_params(subject)
+      # Gerando a pergunta com as respostas
+      params = {
+        description: "#{Faker::Lorem.paragraph} #{Faker::Lorem.question}",
+        subject: subject,
+        # Chave para os atributos de respostas
+        answers_attributes: generate_answers
+      }
+    end
+
+    def generate_answers
+      answers = []
+
+      # Gerando de 2 a 5 alternativas
+      rand(2..5).times do |i|
+        answers.push(answer_params)
+      end
+
+      # Sorteando uma alternativa para ser verdadeira
+      index = rand(answers.size)
+      answers[index][:correct] = true
+
+      answers
+    end
+
+    def answer_params(sentence = Faker::Lorem.sentence, correct = false)
+      {
+        description: sentence,
+        correct: correct,
+      }
+    end
+    
     def show_spinner(start_message_log, end_message_log = "Concluído com sucesso!")
       pastel = Pastel.new
 
