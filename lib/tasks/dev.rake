@@ -64,13 +64,13 @@ namespace :dev do
     end
   end
 
-  desc "Loads questions and answers into the database"
+  desc "Loads questions with answers into the database"
   task add_questions_and_answers: :environment do
     show_spinner("Carregando questoes e respostas ...") do
-      # Passar por cada assunto
+      # Passa por cada assunto
       Subject.all.each do |subject|
-        # Cadastrar de 3 a 10 respostas por assunto
         rand(3..10).times do |i|
+          # Cadastra de 3 a 10 perguntas por assunto
           Question.create!(question_params(subject))
         end
       end
@@ -80,25 +80,23 @@ namespace :dev do
   private
     def question_params(subject)
       # Gerando a pergunta com as respostas
+      question_sentence = Faker::Lorem.paragraph + Faker::Lorem.question
+
       params = {
-        description: "#{Faker::Lorem.paragraph} #{Faker::Lorem.question}",
+        description: question_sentence,
         subject: subject,
         # Chave para os atributos de respostas
         answers_attributes: generate_answers
       }
     end
 
-    def generate_answers
-      answers = []
-
+    def generate_answers(answers = [])
       # Gerando de 2 a 5 alternativas
       rand(2..5).times do |i|
         answers.push(answer_params)
       end
 
-      # Sorteando uma alternativa para ser verdadeira
-      index = rand(answers.size)
-      answers[index][:correct] = true
+      set_correct_answer(answers)
 
       answers
     end
@@ -108,6 +106,12 @@ namespace :dev do
         description: sentence,
         correct: correct,
       }
+    end
+
+    def set_correct_answer(answers)
+      # Sorteia uma alternativa e define como verdadeira
+      index = rand(answers.size)
+      answers[index][:correct] = true
     end
     
     def show_spinner(start_message_log, end_message_log = "Concluído com sucesso!")
