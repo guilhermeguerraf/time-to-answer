@@ -41,11 +41,16 @@ gem 'devise'
 
 gem 'rails-i18n', '~> 5.1'
 
-# Use Devise for pagination
+# Use Kaminari for pagination
 gem 'kaminari'
+# Use Kaminari i18n for translate the pagination
 gem 'kaminari-i18n'
 
+# Use Faker for generate fake datas
 gem 'faker'
+
+# Use Cocoon for allow nested attributes into the forms
+gem 'cocoon'
 
 gem 'tty-spinner'
 gem 'pastel'
