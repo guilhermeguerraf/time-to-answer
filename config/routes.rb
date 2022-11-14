@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
+  root 'site/welcome#index'
+
   namespace :site do
     get 'welcome/index'
+    get 'search', to: 'search#questions'
   end
   
   namespace :users_backoffice do
@@ -16,7 +19,6 @@ Rails.application.routes.draw do
   
   devise_for :users
   devise_for :admins
-
-  root to: 'site/welcome#index'
+  
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
