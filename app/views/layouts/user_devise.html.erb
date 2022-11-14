@@ -21,5 +21,17 @@
 
     <%= javascript_include_tag 'application' %>
     <%= javascript_include_tag 'user_devise' %>
+
+    <% if flash %>
+      <% flash.each do |key, value| %>
+        <%= javascript_tag do %>
+          $.bootstrapGrowl("<%= value %>", {
+            type: 'danger',
+            allow_dismiss: true,
+            stackup_spacing: 10
+          });
+        <% end %>
+      <% end %>
+    <% end %>
   </body>
 </html>
