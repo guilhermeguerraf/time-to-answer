@@ -2,12 +2,6 @@
 <div class="jumbotron">
   <h1>Site::Welcome#index</h1>
   <p>Find me in app/views/site/welcome/index.html.erb</p>
-  <br>
-  <% if admin_signed_in? %>
-    <p>Admin logado / <%= current_admin.email %></p>
-  <% else %>
-    <p>Admin não logado</p>
-  <% end %>
 </div>
 
 <%= render partial: 'site/shared/questions' %>

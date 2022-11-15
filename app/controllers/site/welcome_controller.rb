@@ -1,5 +1,5 @@
 class Site::WelcomeController < SiteController
   def index
-    @questions = Question.includes(:answers).last(5).reverse
+    @questions = Question.latest
   end
 end

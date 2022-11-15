@@ -1,24 +1,35 @@
 <% unless @questions.blank? %>
   <% @questions.each do |question| %>
-    <div class="panel panel-default">
+    <div id="question-<%= question.id %>" class="panel panel-default">
       <div class="panel-heading">
         <h3 class="panel-title">
+          <span class="label label-primary" style="margin-right: 10px;">
+            <%= link_to question.subject.description, site_search_subject_path(question.subject_id), style: "color: white;" %>
+          </span>
+
           <%= question.description %>
         </h3>
       </div>
       <div class="panel-body">
-        <ul>
+        <%= form_with url: site_answer_path do |form|%>
           <% question.answers.each do |answer| %>
-            <li>
-              <%= answer.description %>
-            </li>
+            <div class="radio">
+              <label>
+                <%= radio_button_tag 'answer', answer.id %>
+                <%= answer.description %>
+              </label>
+            </div>
           <% end %>
-        </ul>
+          <%= form.submit 'Responder', class: "btn btn-primary" %>
+          <small id="message-<%= question.id %>"></small>
+        <% end %>
       </div>
     </div>
   <% end %>
 <% else %>
-  <p class="text-center">
-    Nenhuma pergunta foi encontrada com o termo: <%= params[:term] %>
+  <p class="lead">
+    <small>
+      Nenhuma pergunta foi encontrada para o termo: <b><%= params[:term] %></b>
+    </small>
   </p>
 <% end %>

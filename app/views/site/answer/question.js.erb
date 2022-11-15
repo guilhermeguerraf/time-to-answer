@@ -1,0 +1,19 @@
+var question = document.getElementById("question-<%= @answer.question_id %>");
+var message = document.getElementById("message-<%= @answer.question_id %>");
+
+if (<%= @answer.correct %>) {
+  question.classList.remove("panel-default");
+  question.classList.remove("panel-success");
+  question.classList.remove("panel-danger");
+
+  question.classList.add("panel-success");
+  message.innerHTML= "Parabéns, você acertou! :D";
+
+} else {
+  question.classList.remove("panel-default");
+  question.classList.remove("panel-success");
+  question.classList.remove("panel-danger");
+
+  question.classList.add("panel-danger")
+  message.innerHTML = "Você errou, tente novamente";
+}
