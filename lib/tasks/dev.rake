@@ -12,6 +12,7 @@ namespace :dev do
       %x(rails dev:add_extra_admins)
       %x(rails dev:add_subjects)
       %x(rails dev:add_questions_and_answers)
+      %x(rails dev:reset_questions_counter_by_subject)
     else
       "This task run just in development environment."
     end
@@ -73,6 +74,15 @@ namespace :dev do
           # Cadastra de 3 a 10 perguntas por assunto
           Question.create!(question_params(subject))
         end
+      end
+    end
+  end
+
+  desc "Reset questions_count of subject into the database"
+  task reset_questions_counter_by_subject: :environment do
+    show_spinner("Resetando contador de perguntas por assunto...") do
+      Subject.all.each do |subject|
+        Subject.reset_counters(subject.id, :questions)
       end
     end
   end
