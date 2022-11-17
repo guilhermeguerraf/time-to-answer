@@ -43,9 +43,14 @@
               <div class="menu_section">
                 <ul class="nav side-menu">
                   <li>
-                    <a>
+                    <%= link_to users_backoffice_welcome_index_path do %>
+                      <i class="fa fa-home"></i> Início
+                    <% end %>
+                  </li>
+                  <li>
+                    <%= link_to users_backoffice_profile_path do %>
                       <i class="fa fa-user"></i> Dados do perfil
-                    </a>
+                    <% end %>
                   </li>
                 </ul>
               </div>
@@ -102,9 +107,9 @@
           <div class="">
             <div class="page-title">
               <div class="title_left">
-                <%= yield %>
               </div>
             </div>
+            <%= yield %>
           </div>
         </div>
         <!-- /page content -->
@@ -122,5 +127,15 @@
 
     <%= javascript_include_tag 'application' %>
     <%= javascript_include_tag 'users_backoffice' %>
+
+    <% if notice %>
+      <%= javascript_tag do %>
+        $.bootstrapGrowl("<%= notice %>", {
+          type: 'success',
+          allow_dismiss: true,
+          stackup_spacing: 10
+        });
+      <% end %>
+    <% end %>
   </body>
 </html>

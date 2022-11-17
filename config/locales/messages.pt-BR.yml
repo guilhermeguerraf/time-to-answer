@@ -6,7 +6,9 @@
     confirm_with: Tem certeza?
   placeholders:
     devise:
-      email: fulanodasilva@mail.com
+      first_name: Fulano
+      last_name: de Tal
+      email: fulanodetal@mail.com
       password: Deve ter pelo menos 6 caracteres
       password_confirmation: Repita a senha
     question:
