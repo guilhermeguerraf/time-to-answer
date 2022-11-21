@@ -1,9 +1,10 @@
 class UsersBackoffice::ProfileController < UsersBackofficeController
   before_action :verify_password, only: [:update]
   before_action :set_user, only: [:edit, :update]
+  before_action :build_profile
   
   def edit
-    @user.build_user_profile if @user.user_profile.blank?
+    
   end
 
   def update
@@ -22,6 +23,10 @@ class UsersBackoffice::ProfileController < UsersBackofficeController
       end
     end
 
+    def build_profile
+      current_user.build_user_profile if current_user.user_profile.blank?
+    end
+
     def set_user
       @user = User.find(current_user.id)
     end
@@ -37,7 +42,8 @@ class UsersBackoffice::ProfileController < UsersBackofficeController
           :id,
           :birthdate,
           :gender,
-          :address
+          :address,
+          :avatar
         ]
       )
     end
