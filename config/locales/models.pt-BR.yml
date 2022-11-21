@@ -33,6 +33,13 @@
         password_confirmation: Confirmação da senha
         created_at: Criado em
         updated_at: Atualizado em
+      user_profile:
+        id: Código
+        birthdate: Data de nascimento
+        gender: Gênero
+        address: Endereço
+        created_at: Criado em
+        updated_at: Atualizado em
       question:
         id: Código
         description: Descrição

@@ -1,22 +1,26 @@
 Rails.application.routes.draw do
   root 'site/welcome#index'
+  get  'backoffice', to: 'admins_backoffice/welcome#index' # Dashboard
 
   namespace :site do
-    get 'welcome/index'
-    get 'search', to: 'search#questions'
-    get 'subject/:id/:description', to: 'search#subject', as: 'search_subject'
-    post 'answer', to: 'answer#question'
+    root 'welcome#index'
+    get  'search',                   to: 'search#questions'
+    get  'subject/:id/:description', to: 'search#subject',   as: 'search_subject'
+    post 'answer',                   to: 'answer#question'
   end
   
   namespace :users_backoffice do
+    root  'welcome#index'
     get   'welcome/index'
     get   'profile', to: 'profile#edit'
     patch 'profile', to: 'profile#update'
   end
   
   namespace :admins_backoffice do
-    get 'dashboard', to: 'welcome#index' # Dashboard
-    resources :admins, except: [:show]
+    root 'welcome#index'
+    get  'dashboard', to: 'welcome#index' # Dashboard
+
+    resources :admins,   except: [:show]
     resources :subjects, except: [:show]
     resources :questions
   end
