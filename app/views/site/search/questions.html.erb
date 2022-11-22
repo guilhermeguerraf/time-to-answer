@@ -1,5 +1,4 @@
-
-<% if @questions.total_count.nonzero? %>
+<% if @questions.total_count != 0 %>
   <p class="lead">
     <small>
       <%= "#{ @questions.total_count } #{ @questions.total_count != 1 ? "resultados" : "resultado" } para: " %>
@@ -8,12 +7,4 @@
   </p>
 <% end %>
 
-
 <%= render partial: 'site/shared/questions' %>
-
-<%# Pagination %>
-<div class="row">
-  <div class="col-lg-12 text-center">
-    <%= paginate @questions %>
-  </div> <!-- /.col-lg-12 -->
-</div> <!-- /.row -->
