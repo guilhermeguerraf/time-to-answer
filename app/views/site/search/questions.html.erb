@@ -1,4 +1,4 @@
-<% if @questions.total_count != 0 %>
+<% unless @questions.blank? %>
   <p class="lead">
     <small>
       <%= "#{ @questions.total_count } #{ @questions.total_count != 1 ? "resultados" : "resultado" } para: " %>

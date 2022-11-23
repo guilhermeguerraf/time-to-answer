@@ -1,15 +1,14 @@
 class UsersBackoffice::ProfileController < UsersBackofficeController
   before_action :verify_password, only: [:update]
   before_action :set_user, only: [:edit, :update]
-  before_action :build_profile
   
   def edit
-    
   end
 
   def update
     if @user.update(user_params)
       bypass_sign_in(@user)
+      
       unless user_params[:user_profile_attributes][:avatar]
         redirect_to users_backoffice_profile_path, notice: 'Usuário atualizado com sucesso'
       end
@@ -25,12 +24,12 @@ class UsersBackoffice::ProfileController < UsersBackofficeController
       end
     end
 
-    def build_profile
-      current_user.build_user_profile if current_user.user_profile.blank?
-    end
-
     def set_user
       @user = User.find(current_user.id)
+      
+      if @user.user_profile.blank?
+        @user.build_user_profile
+      end
     end
     
     def user_params

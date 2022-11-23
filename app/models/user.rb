@@ -8,7 +8,7 @@ class User < ApplicationRecord
   accepts_nested_attributes_for :user_profile, reject_if: :all_blank
   
   # Validações
-  validates :first_name, presence: true, length: { minimum:2 }, on: :update
+  # validates :first_name, presence: true, length: { minimum:2 }, on: :update
   
   # Virtual attributes
   def full_name
