@@ -7,7 +7,13 @@ class UserStatistic < ApplicationRecord
 
   def self.set_statistics(answer, current_user)
     user_statistic = UserStatistic.find_or_create_by(user: current_user)
-    answer.correct? ? user_statistic.right_questions += 1 : user_statistic.wrong_questions += 1
+    
+    if answer.correct?
+      user_statistic.right_questions += 1
+    else
+      user_statistic.wrong_questions += 1
+    end
+
     user_statistic.save!
   end
 end

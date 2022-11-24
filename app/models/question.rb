@@ -2,6 +2,11 @@ class Question < ApplicationRecord
   belongs_to :subject, counter_cache: true, inverse_of: :questions
   has_many :answers
   accepts_nested_attributes_for :answers, reject_if: :all_blank, allow_destroy: true
+
+  # Callbacks
+  after_create :set_statistic
+
+  # Kaminari - Set default value for pagination
   paginates_per 10
 
   scope :search_by_term, -> (term) {
@@ -14,5 +19,13 @@ class Question < ApplicationRecord
     includes(:answers, :subject).where(subject_id: subject_id)
   }
 
-  scope :latest, -> { includes(:answers, :subject).order(created_at: :desc).first(5) }
+  scope :latest, -> {
+    includes(:answers, :subject).order(created_at: :desc).first(5)
+  }
+
+  private
+    def set_statistic
+      AdminStatistic.set_event(AdminStatistic::EVENTS[:total_questions])
+    end
+    
 end
