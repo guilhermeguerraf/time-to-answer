@@ -15,9 +15,15 @@ class AdminStatistic < ApplicationRecord
 
   # Métodos da classe
   private
-    def self.set_event(event)
+    def self.adds_one_to_event(event)
       admin_statistic = AdminStatistic.find_or_create_by(event: event)
       admin_statistic.value += 1
+      admin_statistic.save
+    end
+
+    def self.decreases_one_to_event(event)
+      admin_statistic = AdminStatistic.find_or_create_by(event: event)
+      admin_statistic.value -= 1
       admin_statistic.save
     end
 end
