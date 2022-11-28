@@ -3,7 +3,7 @@ class Site::AnswerController < SiteController
     @answer = Answer.find(params[:answer])
 
     if user_signed_in?
-      UserStatistic.set_statistics(@answer, current_user)
+      UserStatistic.set_statistic_by_answer(@answer, current_user)
     end
   end
 end

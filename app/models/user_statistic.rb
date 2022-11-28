@@ -5,7 +5,7 @@ class UserStatistic < ApplicationRecord
     self.right_questions + self.wrong_questions
   end
 
-  def self.set_statistics(answer, current_user)
+  def self.set_statistic_by_answer(answer, current_user)
     user_statistic = UserStatistic.find_or_create_by(user: current_user)
     
     if answer.correct?
