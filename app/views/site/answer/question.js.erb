@@ -5,15 +5,21 @@ if (<%= @answer.correct %>) {
   question.classList.remove("panel-default");
   question.classList.remove("panel-success");
   question.classList.remove("panel-danger");
+  message.classList.remove("text-success");
+  message.classList.remove("text-danger");
 
   question.classList.add("panel-success");
   message.innerHTML= "Parabéns, você acertou! :D";
+  message.classList.add("text-success");
 
 } else {
   question.classList.remove("panel-default");
   question.classList.remove("panel-success");
   question.classList.remove("panel-danger");
+  message.classList.remove("text-success");
+  message.classList.remove("text-danger");
 
   question.classList.add("panel-danger")
   message.innerHTML = "Você errou, tente novamente";
+  message.classList.add("text-danger");
 }

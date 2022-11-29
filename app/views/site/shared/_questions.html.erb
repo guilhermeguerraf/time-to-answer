@@ -3,17 +3,12 @@
     <div id="question-<%= question.id %>" class="panel panel-default">
       <div class="panel-heading">
         <h3 class="panel-title">
-          <%= link_to site_search_subject_path(question.subject_id, question.subject.description), style: "color: white; margin-right: 10px;" do %>
-            <span class="label label-primary">
-              <%= "#{question.subject.description} (#{question.subject.questions_count})" %>
-            </span>
-          <% end %>
-
           <%= question.description %>
         </h3>
       </div>
-      <div class="panel-body">
-        <%= form_with url: site_answer_path do |form|%>
+
+      <%= form_with url: site_answer_path do |form|%>
+        <div class="list-group">
           <ul>
             <% question.answers.each do |answer| %>
               <li class="radio">
@@ -23,11 +18,21 @@
                 </label>
               </li>
             <% end %>
-            <%= form.submit 'Responder', class: "btn btn-primary" %>
-            <small id="message-<%= question.id %>"></small>
           </ul>
-        <% end %>
-      </div>
+        </div>
+
+        <div class="panel-footer text-justify" style="display: flex; justify-content: space-between; align-items: center;">
+          <%= link_to site_search_subject_path(question.subject_id, question.subject.description), style: "color: white; margin-right: 10px; text-decoration: none;" do %>
+            <span class="label label-info">
+              <%= "#{question.subject.description} (#{question.subject.questions_count})" %>
+            </span>
+          <% end %>
+          <div>
+            <b><small id="message-<%= question.id %>"></small></b>
+            <%= form.submit 'Responder', class: "btn btn-default" %>
+          </div>
+        </div>
+      <% end %>
     </div>
   <% end %>
 

@@ -1,7 +1,31 @@
 <!-- Main component for a primary marketing message or call to action -->
 <div class="jumbotron">
-  <h1>Site::Welcome#index</h1>
-  <p>Find me in app/views/site/welcome/index.html.erb</p>
+  <h2>Bem-vindo ao Time to Answer!</h2>
+  <p>Um site de perguntas e respostas para praticar os seus estudos. Cadastre-se e tenha acesso a todas as perguntas!</p>
 </div>
 
+<div class="page-header">
+  <h3>Assuntos mais populares</h3>
+</div>
+<div class="row">
+  <% @subjects.each do |subject| %>
+    <div class="col-sm-6 col-md-4">
+      <%= link_to site_search_subject_path(subject.id, subject.description) do %>
+        <div class="thumbnail">
+          <div class="caption">
+            <h4><%= subject.description %></h4>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+<div class="text-right">
+  <a>Ver todos...</a>
+</div>
+
+
+<div class="page-header">
+  <h3>Perguntas mais recentes</h3>
+</div>
 <%= render partial: 'site/shared/questions' %>
