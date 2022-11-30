@@ -1,0 +1,38 @@
+<div class="page-header">
+  <h2>Todos os assuntos</h2>
+</div>
+
+<% unless @subjects.blank? %>
+  <p class="lead">
+    <small>
+      <%= "#{ @subjects.total_count } #{ @subjects.total_count != 1 ? "assuntos" : "assunto" }" %>
+    </small>
+  </p>
+<% end %>
+
+<div class="row">
+  <% @subjects.each do |subject| %>
+    <div class="col-sm-6 col-md-4">
+      <%= link_to site_subject_path(subject.id) do %>
+        <div class="thumbnail">
+          <div class="caption">
+            <h4><%= subject.description.truncate(30) %></h4>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+
+<% if user_signed_in? %>
+  <%# Pagination %>
+  <div class="row">
+    <div class="col-lg-12 text-center">
+      <%= paginate @subjects %>
+    </div> <!-- /.col-lg-12 -->
+  </div> <!-- /.row -->
+<% else %>
+  <div class="alert alert-warning" role="alert">
+    Efetue login para poder navegar em todas as perguntas...
+  </div>
+<% end %>'

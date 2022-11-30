@@ -1,6 +1,14 @@
-<div class="jumbotron">
-  <h2><%= params[:description] %></h2>
+<div class="page-header">
+  <h2>Todas as perguntas</h2>
 </div>
+
+<% unless @questions.blank? %>
+  <p class="lead">
+    <small>
+      <%= "#{ @questions.total_count } #{ @questions.total_count != 1 ? "perguntas" : "pergunta" }" %>
+    </small>
+  </p>
+<% end %>
 
 <%= render partial: 'site/shared/questions' %>
 

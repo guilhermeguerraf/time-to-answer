@@ -21,31 +21,19 @@
           </ul>
         </div>
 
-        <div class="panel-footer text-justify" style="display: flex; justify-content: space-between; align-items: center;">
+        <div class="panel-footer" style="display: flex; justify-content: space-between; align-items: center;">
           <%= link_to site_search_subject_path(question.subject_id, question.subject.description), style: "color: white; margin-right: 10px; text-decoration: none;" do %>
             <span class="label label-info">
               <%= "#{question.subject.description} (#{question.subject.questions_count})" %>
             </span>
           <% end %>
+
           <div>
             <b><small id="message-<%= question.id %>"></small></b>
             <%= form.submit 'Responder', class: "btn btn-default" %>
           </div>
         </div>
       <% end %>
-    </div>
-  <% end %>
-
-  <% if user_signed_in? %>
-    <%# Pagination %>
-    <div class="row">
-      <div class="col-lg-12 text-center">
-        <%= paginate @questions %>
-      </div> <!-- /.col-lg-12 -->
-    </div> <!-- /.row -->
-  <% else %>
-    <div class="alert alert-warning" role="alert">
-      Efetue login para poder navegar em todas as perguntas...
     </div>
   <% end %>
 <% else %>
