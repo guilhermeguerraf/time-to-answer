@@ -52,6 +52,9 @@ gem 'faker'
 # Use Cocoon for allow nested attributes into the forms
 gem 'cocoon'
 
+# Use Prawn-Rails for generate PDF files
+gem 'prawn-rails'
+
 gem 'tty-spinner'
 gem 'pastel'
 

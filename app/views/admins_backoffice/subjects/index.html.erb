@@ -1,18 +1,23 @@
 <%# Page title %>
 <div class="row">
   <div class="col-lg-12">
-    <div class="page-header">
-      <h1>
-        <%= t('messages.listing', model: @subjects.model_name.human(count: 2)) %>
-      </h1>
-      
-      <%= link_to new_admins_backoffice_subject_path, class: "btn btn-success", title: t('buttons.new') do %>
-        <i class="fa fa-plus"></i> Novo assunto
-      <% end %>
-    </div>
-
+    <h1 class="page-header">
+      <%= t('messages.listing', model: @subjects.model_name.human(count: 2)) %>
+    </h1>
   </div> <!-- /.col-lg-12 -->
 </div> <!-- /.row -->
+
+<div class="row" style="margin-bottom: 15px;">
+  <div class="col-lg-12">
+    <%= link_to new_admins_backoffice_subject_path, class: "btn btn-success", title: t('buttons.new') do %>
+      <i class="fa fa-plus"></i> Novo assunto
+    <% end %>
+
+    <%= link_to admins_backoffice_subjects_path(format: :pdf), class: "btn btn-default", title: t('buttons.pdf') do %>
+      <i class="fa fa-file-pdf-o"></i> Gerar PDF
+    <% end %>
+  </div>
+</div>
 
 <%# Table %>
 <div class="row">
