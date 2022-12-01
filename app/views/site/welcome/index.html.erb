@@ -14,6 +14,7 @@
         <div class="thumbnail">
           <div class="caption">
             <h4><%= subject.description.truncate(30) %></h4>
+            <p><%= "#{ subject.questions_count } #{ subject.questions_count != 1 ? "perguntas" : "pergunta" }" %></p>
           </div>
         </div>
       <% end %>

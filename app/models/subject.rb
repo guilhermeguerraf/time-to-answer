@@ -6,6 +6,11 @@ class Subject < ApplicationRecord
 
   scope :more_popular, -> { order(questions_count: :desc).limit(6) }
 
+  scope :find_all_questions_paged_by_subject_id, -> (id, page) {
+    find(id).questions.includes(:answers).page(page).per(10)
+  }
+
+
   private
     def set_total_questions_statistic
       AdminStatistic.set_statistic_by_event(AdminStatistic::EVENTS[:total_questions], self.questions_count)

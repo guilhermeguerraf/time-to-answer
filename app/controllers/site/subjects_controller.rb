@@ -5,7 +5,7 @@ class Site::SubjectsController < SiteController
 
   def show
     @subject = Subject.find(params[:id])
-    @questions = @subject.questions.page(params[:page]).per(10)
+    @questions = Subject.find_all_questions_paged_by_subject_id(params[:id], params[:page])
   end
   
 end

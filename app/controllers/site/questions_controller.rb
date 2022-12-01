@@ -1,5 +1,5 @@
 class Site::QuestionsController < SiteController
   def index
-    @questions = Question.all.page(params[:page]).per(30)
+    @questions = Question.includes(:answers, :subject).page(params[:page]).per(30)
   end
 end

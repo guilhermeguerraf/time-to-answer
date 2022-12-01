@@ -10,13 +10,13 @@ class Question < ApplicationRecord
   # Kaminari - Set default value for pagination
   paginates_per 10
 
-  scope :search_by_term, -> (term) {
+  scope :find_by_term, -> (term) {
     includes(:answers, :subject).where(
       'lower(description) LIKE ?', "%#{term.downcase}%"
     )
   }
 
-  scope :search_by_subject, -> (subject_id) {
+  scope :find_by_subject, -> (subject_id) {
     includes(:answers, :subject).where(subject_id: subject_id)
   }
 
