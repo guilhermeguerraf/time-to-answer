@@ -5,6 +5,7 @@ class AdminsBackoffice::SubjectsController < AdminsBackofficeController
     respond_to do |format|
       format.html { @subjects = Subject.all.page(params[:page]) }
       format.pdf  { @subjects = Subject.all }
+      format.json { @subjects = Subject.all }
     end
   end
   
