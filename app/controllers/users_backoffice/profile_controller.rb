@@ -43,6 +43,7 @@ class UsersBackoffice::ProfileController < UsersBackofficeController
           :id,
           :birthdate,
           :gender,
+          :zip_code,
           :address,
           :avatar
         ]

@@ -6,16 +6,18 @@ Rails.application.routes.draw do
     root 'welcome#index'
     get  'search',                   to: 'search#questions'
     get  'subject/:id/:description', to: 'search#subject',   as: 'search_subject'
+    get  'subjects',                 to: 'subject#index'
+    get  'subject',                  to: 'subject#show'
+    get  'questions',                to: 'questions#index'
     post 'answer',                   to: 'answer#question'
-    resources :subjects, only: [:index, :show]
-    resources :questions, only: [:index]
   end
   
   namespace :users_backoffice do
     root  'welcome#index'
     get   'welcome/index'
-    get   'profile', to: 'profile#edit'
-    patch 'profile', to: 'profile#update'
+    get   'profile',  to: 'profile#edit'
+    patch 'profile',  to: 'profile#update'
+    get   'zip_code', to: 'zip_code#show'
   end
   
   namespace :admins_backoffice do
