@@ -5,9 +5,9 @@ Rails.application.routes.draw do
   namespace :site do
     root 'welcome#index'
     get  'search',                   to: 'search#questions'
-    get  'subject/:id/:description', to: 'search#subject',   as: 'search_subject'
-    get  'subjects',                 to: 'subject#index'
-    get  'subject',                  to: 'subject#show'
+    get  'subject/:id/:description', to: 'search#subject',  as: 'search_subject'
+    get  'subjects',                 to: 'subjects#index'
+    get  'subjects/:id',             to: 'subjects#show',   as: 'subject'
     get  'questions',                to: 'questions#index'
     post 'answer',                   to: 'answer#question'
   end
