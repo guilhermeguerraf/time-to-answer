@@ -1,7 +1,7 @@
-var question = document.getElementById("question-<%= @answer.question_id %>");
-var message = document.getElementById("message-<%= @answer.question_id %>");
+var question = document.getElementById("question_<%= @question_id %>");
+var message = document.getElementById("message_<%= @question_id %>");
 
-if (<%= @answer.correct %>) {
+if (<%= @correct %>) {
   question.classList.remove("panel-default");
   question.classList.remove("panel-success");
   question.classList.remove("panel-danger");

@@ -39,6 +39,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 # Use Devise for authentication
 gem 'devise'
 
+# Use Rails-I18n to translate the application views
 gem 'rails-i18n', '~> 5.1'
 
 # Use Kaminari for pagination
@@ -46,14 +47,18 @@ gem 'kaminari'
 # Use Kaminari i18n for translate the pagination
 gem 'kaminari-i18n'
 
-# Use Faker for generate fake datas
+# Use Faker to generate fake datas
 gem 'faker'
 
-# Use Cocoon for allow nested attributes into the forms
+# Use Cocoon to allow nested attributes into the forms
 gem 'cocoon'
 
-# Use Prawn-Rails for generate PDF files
+# Use Prawn-Rails to generate PDF files
 gem 'prawn-rails'
+
+# Use Redis to caching
+gem 'redis'
+gem 'hiredis'
 
 gem 'tty-spinner'
 gem 'pastel'

@@ -87,6 +87,15 @@ namespace :dev do
     end
   end
 
+  desc "Loads all the answers into Redis"
+  task set_all_answers_into_redis: :environment do
+    show_spinner("Carregando todas as respostas no Redis...") do
+      Answer.find_each do |answer|
+        Rails.cache.write(answer.id, "#{answer.question_id}@@#{answer.correct}")
+      end
+    end
+  end
+
   private
     def question_params(subject)
       # Gerando a pergunta com as respostas

@@ -1,6 +1,6 @@
 <% unless @questions.blank? %>
   <% @questions.each do |question| %>
-    <div id="question-<%= question.id %>" class="panel panel-default">
+    <div id="question_<%= question.id %>" class="panel panel-default">
       <div class="panel-heading">
         <h3 class="panel-title">
           <%= question.description %>
@@ -29,7 +29,7 @@
           <% end %>
 
           <div>
-            <b><small id="message-<%= question.id %>"></small></b>
+            <b><small id="message_<%= question.id %>"></small></b>
             <%= form.submit 'Responder', class: "btn btn-default" %>
           </div>
         </div>
