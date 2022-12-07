@@ -3,7 +3,7 @@
     <div id="question_<%= question.id %>" class="panel panel-default">
       <div class="panel-heading">
         <h3 class="panel-title">
-          <%= question.description %>
+          <%= sanitize question.description %>
         </h3>
       </div>
 

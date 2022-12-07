@@ -4,8 +4,8 @@ class Question < ApplicationRecord
   accepts_nested_attributes_for :answers, reject_if: :all_blank, allow_destroy: true
 
   # Callbacks
-  after_create  :set_total_questions_statistic
-  after_destroy :set_total_questions_statistic
+  after_create  :increases_total_number_of_questions
+  after_destroy :decreases_total_number_of_questions
 
   # Kaminari - Set default value for pagination
   paginates_per 10
@@ -25,7 +25,11 @@ class Question < ApplicationRecord
   }
 
   private
-    def set_total_questions_statistic
-      AdminStatistic.set_statistic_by_event(AdminStatistic::EVENTS[:total_questions])
+    def increases_total_number_of_questions
+      AdminStatistic.increases_total_number_by_event(AdminStatistic::EVENTS[:total_questions])
+    end
+
+    def decreases_total_number_of_questions
+      AdminStatistic.decreases_total_number_by_event(AdminStatistic::EVENTS[:total_questions])
     end
 end

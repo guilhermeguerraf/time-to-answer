@@ -60,6 +60,9 @@ gem 'prawn-rails'
 gem 'redis'
 gem 'hiredis'
 
+# Use Trix for WYSIWYG editor
+gem 'trix'
+
 gem 'tty-spinner'
 gem 'pastel'
 

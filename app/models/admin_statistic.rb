@@ -15,15 +15,15 @@ class AdminStatistic < ApplicationRecord
 
   # Métodos da classe
   private
-    def self.set_statistic_by_event(event, total_count = 1)
+    def self.increases_total_number_by_event(event, total_count = 1)
       admin_statistic = AdminStatistic.find_or_create_by(event: event)
+      admin_statistic.value += total_count
+      admin_statistic.save
+    end
 
-      if $action_params == "create"
-        admin_statistic.value += total_count
-      else
-        admin_statistic.value -= total_count
-      end
-      
+    def self.decreases_total_number_by_event(event, total_count = 1)
+      admin_statistic = AdminStatistic.find_or_create_by(event: event)
+      admin_statistic.value -= total_count
       admin_statistic.save
     end
 end

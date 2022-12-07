@@ -2,7 +2,7 @@
   <p class="lead">
     <small>
       <%= "#{ @questions.total_count } #{ @questions.total_count != 1 ? "resultados" : "resultado" } para: " %>
-      <b><%= params[:term] %></b>
+      <b><%= sanitize params[:term] %></b>
     </small>
   </p>
 <% end %>

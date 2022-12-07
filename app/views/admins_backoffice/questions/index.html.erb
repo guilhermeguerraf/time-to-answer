@@ -29,7 +29,7 @@
           <% @questions.each do |question| %>
             <tr>
               <td><%= question.id %></td>
-              <td><%= question.description.truncate(90) %></td>
+              <td><%= sanitize question.description.truncate(90) %></td>
               <td><%= question.subject.description.truncate(25) %></td>
               <th>
                 <%= link_to edit_admins_backoffice_question_path(question), class: "btn btn-primary btn-circle", title: t('buttons.edit') do %>

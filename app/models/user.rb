@@ -8,7 +8,7 @@ class User < ApplicationRecord
   accepts_nested_attributes_for :user_profile, reject_if: :all_blank
 
   # Callbacks
-  after_create :set_total_users_statistic
+  after_create :increases_total_number_of_users
 
   # Validações
   # validates :first_name, presence: true, length: { minimum:2 }, on: :update
@@ -19,7 +19,7 @@ class User < ApplicationRecord
   end
 
   private
-    def set_total_users_statistic
-      AdminStatistic.set_statistic_by_event(AdminStatistic::EVENTS[:total_users])
+    def increases_total_number_of_users
+      AdminStatistic.increases_total_number_by_event(AdminStatistic::EVENTS[:total_users])
     end
 end
