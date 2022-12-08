@@ -63,6 +63,9 @@ gem 'hiredis'
 # Use Trix for WYSIWYG editor
 gem 'trix'
 
+# Use Searchkick for search in Elasticsearch
+gem 'searchkick'
+
 gem 'tty-spinner'
 gem 'pastel'
 

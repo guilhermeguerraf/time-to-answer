@@ -1,6 +1,7 @@
 class Site::SearchController < SiteController
   def questions
-    @questions = Question.find_by_term(params[:term]).page(params[:page])
+    # @questions = Question.find_by_term(params[:term]).page(params[:page])
+    @questions = Question.search(params[:term], page: params[:page], per_page: 10)
   end
 
   def subject
