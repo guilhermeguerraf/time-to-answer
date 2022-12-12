@@ -1,6 +1,6 @@
 class AdminsBackoffice::QuestionsController < AdminsBackofficeController
   before_action :set_question, only: [:edit, :update, :destroy]
-  before_action :get_subjects, only: [:edit, :new]
+  before_action :get_subjects, only: [:edit, :update, :new, :create]
 
   def index
     @questions = Question.includes(:subject).order(:description).page(params[:page])
@@ -27,7 +27,7 @@ class AdminsBackoffice::QuestionsController < AdminsBackofficeController
     if @question.save
       redirect_to admins_backoffice_questions_path, notice: 'Questão criada com sucesso!'
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
