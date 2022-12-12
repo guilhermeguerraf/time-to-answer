@@ -26,6 +26,13 @@ class Question < ApplicationRecord
     includes(:answers, :subject).order(created_at: :desc).first(5)
   }
 
+  scope :by_filter, -> (field, order, page) {
+    includes(:answers, :subject)
+      .order("#{field} #{order}")
+      .page(page)
+      .per(30)
+  }
+
   private
     def increases_total_number_of_questions
       AdminStatistic.increases_total_number_by_event(AdminStatistic::EVENTS[:total_questions])

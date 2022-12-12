@@ -2,13 +2,24 @@
   <h2>Todas as perguntas</h2>
 </div>
 
-<% unless @questions.blank? %>
-  <p class="lead">
-    <small>
+<div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px;">
+  <% unless @questions.blank? %>
+    <span>
       <%= "#{ @questions.total_count } #{ @questions.total_count != 1 ? "perguntas" : "pergunta" }" %>
-    </small>
-  </p>
-<% end %>
+    </span>
+  <% end %>
+
+  <%= form_with url: site_questions_path, local: true, method: :get, class: "form-inline" do |form| %>
+    <div class="form-group">
+      <%= form.select :field, [['Descrição', 'description'], ['Data de criação', 'created_at']], {}, {class: "form-control"} %>
+    </div>
+    <div class="form-group">
+      <%= form.select :order, ['ASC', 'DESC'], {}, {class: "form-control"} %>
+    </div>
+    <%= form.submit 'Filtrar', class: "btn btn-default" %>
+  <% end %>
+</div>
+
 
 <%= render partial: 'site/shared/questions' %>
 
@@ -24,3 +35,4 @@
     Efetue login para poder navegar em todas as perguntas...
   </div>
 <% end %>
+
