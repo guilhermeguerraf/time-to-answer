@@ -66,6 +66,7 @@ gem 'trix'
 # Use Searchkick for search in Elasticsearch
 gem 'searchkick'
 
+# Use TTY-Spinner and Pastel to customize the output of terminal
 gem 'tty-spinner'
 gem 'pastel'
 
