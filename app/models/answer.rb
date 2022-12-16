@@ -3,6 +3,7 @@ class Answer < ApplicationRecord
 
   after_create :set_into_redis
   before_destroy :delete_from_redis
+  after_update :update_redis
 
   private
     def set_into_redis
@@ -10,6 +11,10 @@ class Answer < ApplicationRecord
     end
 
     def delete_from_redis
-      Rails.cache.delete("#{self.id}")
+      Rails.cache.delete_matched("#{self.id}")
+    end
+
+    def update_redis
+      Rails.cache.fetch(self.id, force: true) { "#{self.question_id}@@#{self.correct}" }
     end
 end
