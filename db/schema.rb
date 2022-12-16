@@ -73,7 +73,7 @@ ActiveRecord::Schema.define(version: 2022_12_05_141111) do
     t.string "description", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "questions_count"
+    t.integer "questions_count", default: 0
   end
 
   create_table "user_profiles", force: :cascade do |t|
