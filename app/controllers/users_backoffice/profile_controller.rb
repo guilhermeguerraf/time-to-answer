@@ -1,7 +1,7 @@
 class UsersBackoffice::ProfileController < UsersBackofficeController
   before_action :verify_password, only: [:update]
   before_action :set_user, only: [:edit, :update]
-  
+
   def edit
   end
 

@@ -1,0 +1,14 @@
+<h1>Minhas perguntas favoritas</h1>
+
+<div>
+
+  <% @favorites.map do |favorite| %>
+    <%= favorite.question.description %>
+
+    <%= link_to users_backoffice_favorite_question_path(favorite), method: :delete, data: { confirm: t('messages.confirm_with') }, class: "btn btn-danger btn-circle", title: t('buttons.destroy') do %>
+      <i class="fa fa-trash-o"></i>
+    <% end %>
+    <br><br>
+  <% end %>
+
+</div>

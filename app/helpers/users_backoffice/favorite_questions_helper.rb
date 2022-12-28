@@ -1,0 +1,2 @@
+module UsersBackoffice::FavoriteQuestionsHelper
+end

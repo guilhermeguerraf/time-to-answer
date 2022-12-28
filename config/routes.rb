@@ -18,6 +18,9 @@ Rails.application.routes.draw do
     get   'profile',  to: 'profile#edit'
     patch 'profile',  to: 'profile#update'
     get   'zip_code', to: 'zip_code#show'
+    get   'favorites', to: 'favorite_questions#index'
+    delete   'favorite_questions/:id', to: 'favorite_questions#destroy',  as: 'favorite_question'
+    post  'favorite',        to: 'favorite_questions#favorite'
   end
   
   namespace :admins_backoffice do

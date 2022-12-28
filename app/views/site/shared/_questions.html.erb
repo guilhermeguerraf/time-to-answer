@@ -5,6 +5,13 @@
         <h3 class="panel-title">
           <%= sanitize question.description %>
         </h3>
+
+        <div>
+          <%= form_with url: users_backoffice_favorite_path, class: "navbar-form" do |f| %>
+            <%= f.hidden_field :question_id, class: "form-control", value: question.id %>
+            <%= f.submit 'Favoritar', class: "btn btn-default" %>
+          <% end %>
+        </div>
       </div>
 
       <%= form_with url: site_answer_path do |form|%>

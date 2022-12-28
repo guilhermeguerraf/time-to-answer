@@ -7,6 +7,9 @@ class User < ApplicationRecord
   has_one :user_profile
   accepts_nested_attributes_for :user_profile, reject_if: :all_blank
 
+  has_many :favorites
+  has_many :questions, through: :favorites
+
   # Callbacks
   after_create :increases_total_number_of_users
 
