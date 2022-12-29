@@ -2,7 +2,8 @@ class Subject < ApplicationRecord
   has_many :questions
   paginates_per 10
 
-  validates :description, presence: true, length: { minimum: 2 }
+  validates :description, presence: true
+  validates :description, length: { minimum: 2, allow_blank: true }
 
   after_destroy  :decreases_total_number_of_questions
 

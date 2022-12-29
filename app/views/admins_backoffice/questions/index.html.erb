@@ -1,16 +1,19 @@
 <%# Page title %>
 <div class="row">
   <div class="col-lg-12">
-    <div class="page-header">
-      <h1>
-        <%= t('messages.listing', model: @questions.model_name.human(count: 2)) %>
-      </h1>
-      <%= link_to new_admins_backoffice_question_path, class: "btn btn-success", title: t('buttons.new') do %>
-        <i class="fa fa-plus"></i> Nova pergunta
-      <% end %>
-    </div>
+    <h1 class="page-header">
+      <%= t('messages.listing', model: @questions.model_name.human(count: 2)) %>
+    </h1>
   </div> <!-- /.col-lg-12 -->
 </div> <!-- /.row -->
+
+<div class="row" style="margin-bottom: 15px;">
+  <div class="col-lg-12">
+    <%= link_to new_admins_backoffice_question_path, class: "btn btn-success", title: t('buttons.new') do %>
+      <i class="fa fa-plus"></i> Nova pergunta
+    <% end %>
+  </div>
+</div>
 
 <%# Table %>
 <div class="row">

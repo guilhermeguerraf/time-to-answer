@@ -2,14 +2,15 @@ class Question < ApplicationRecord
   searchkick
 
   belongs_to :subject, counter_cache: true, inverse_of: :questions
+  
   has_many :answers
   accepts_nested_attributes_for :answers, reject_if: :all_blank, allow_destroy: true
 
   has_many :favorites
   has_many :user, through: :favorites
   
-  validates :description, presence: true
-  validates :answers, presence: true, length: {minimum: 2}
+  validates :description, :answers, presence: true
+  validates :answers, length: { minimum: 2 , allow_blank: true, message: 'com no mínimo 2 alternativas' }
 
   # Callbacks
   after_create  :increases_total_number_of_questions
