@@ -1,13 +1,13 @@
 class UsersBackoffice::FavoriteQuestionsController < UsersBackofficeController
   def index
-    @favorites = Favorite.where(user_id: current_user.id)
+    @favorites = Favorite.where(user: current_user)
   end
 
   def favorite
-    @question_id = params[:question_id]
-    @user_id = current_user.id
-
-    Favorite.find_or_create_by(user_id: @user_id, question_id: @question_id)
+    if current_user.present?
+      @question = Question.find(params[:question_id])
+      Favorite.find_or_create_by(user: current_user, question: @question)
+    end
   end
 
   def destroy
