@@ -19,5 +19,4 @@ class UsersBackoffice::FavoriteQuestionsController < UsersBackofficeController
       redirect_to users_backoffice_favorite_questions_path
     end
   end
-  
 end
